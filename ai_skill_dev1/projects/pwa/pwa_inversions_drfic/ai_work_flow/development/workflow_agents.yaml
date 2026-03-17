@@ -1,0 +1,256 @@
+# 🧬 Workflow de Agentes — Proyecto pwa_inversions_drfic
+
+> Definición de tareas, responsabilidades y fases de activación para los 5 agentes en este proyecto específico.
+
+**Versión**: 2.2  
+**Fecha**: March 17, 2026  
+**Proyecto**: pwa_inversions_drfic
+
+---
+
+## 📋 Configuración de Agentes por Fase
+
+### FASE 2.3 — Investigación Profunda
+
+#### 🧠 @picoro — Investigación + Análisis
+**Tarea principal**: Investigar dominio de trading e inversiones
+
+```yaml
+phase: "FASE 2.3"
+agent: picoro
+status: "awaiting_specification"
+assigned_skills:
+  - ticket_analyzer
+  - architecture_designer
+  - requirement_validator
+  - knowledge_synthesizer
+
+tasks:
+  1_analyze_spec:
+    name: "Analizar SPECIFICATION.md"
+    input: "projects/pwa/pwa_inversions_drfic/ai_work_flow/docs/specs/SPECIFICATION.md"
+    output: "Validación de completitud"
+    
+  2_research_brokers:
+    name: "Investigar APIs de Brokers"
+    output: "knowledge/local/01_broker_api_research.md"
+    topics:
+      - "Interactive Brokers API (@stoqey/ib)"
+      - "Alpaca API (REST + WebSocket)"
+      - "Comparativa y recomendación"
+    
+  3_research_indicators:
+    name: "Investigar librerías de indicadores"
+    output: "knowledge/local/02_technical_indicators_research.md"
+    topics:
+      - "TA-Lib vs Talib.js vs otras"
+      - "Implementación de RSI, MACD, Bollinger"
+      - "Performance vs precisión"
+    
+  4_research_strategies:
+    name: "Investigar estrategias de opciones"
+    output: "knowledge/local/03_options_strategies_research.md"
+    topics:
+      - "Iron Condor, Straddle, Strangle"
+      - "Risk management"
+      - "Profit/loss calculation"
+    
+  5_design_architecture:
+    name: "Diseñar arquitectura del proyecto"
+    output: "knowledge/local/04_architecture_design.md + config.yaml"
+    components:
+      - "PWA components (React)"
+      - "Services (TypeScript)"
+      - "Database schema (Supabase)"
+      - "API endpoints"
+    
+  6_create_tickets:
+    name: "Generar tickets TKT-INVRFIC-###"
+    output: "tickets/ con tareas para Goku, Krillin, etc."
+```
+
+---
+
+### FASE 2.4 — Diseño + Estructura
+
+#### 🗄️ @krillin — Diseño Base de Datos
+**Tarea**: Diseñar schema Supabase desde contratos PWA
+
+```yaml
+phase: "FASE 2.4"
+agent: krillin
+status: "awaiting_specification"
+assigned_skills:
+  - database_schema_designer
+  - database_migrator
+  - database_connector
+
+tasks:
+  1_design_schema:
+    name: "Traducir modelos PWA → SQL Supabase"
+    input: "data/supabase/models/"
+    output: "data/supabase/schema/ (SQL definitions)"
+    tables:
+      - "strategies (trading strategies config)"
+      - "price_history (OHLCV candles)"
+      - "indicators (calculated indicators)"
+      - "signals (buy/sell signals)"
+      - "trades (executed trades)"
+      - "portfolio (user positions)"
+    
+  2_create_migrations:
+    name: "Crear migraciones versionadas"
+    output: "src/migrations/001_initial_schema.sql"
+    
+  3_prepare_env:
+    name: "Preparar .env.example"
+    output: "projects/api/rest_api_inversions_drfic/.env.example"
+```
+
+#### 👨‍💻 @goku — Estructura Base PWA
+**Tarea**: Crear estructura Vite + componentes skeleton
+
+```yaml
+phase: "FASE 2.4"
+agent: goku
+status: "awaiting_specification"
+assigned_skills:
+  - vite_code_generator
+  - code_structure_organizer
+  - dependency_manager
+
+tasks:
+  1_setup_vite:
+    name: "Configurar Vite + React + TypeScript"
+    output: "vite.config.ts + tsconfig.json + package.json"
+    
+  2_create_structure:
+    name: "Crear estructura de carpetas"
+    output: "src/components/, src/features/, src/services/, etc."
+    
+  3_create_skeletons:
+    name: "Crear componentes skeleton sin lógica"
+    components:
+      - "Dashboard (main page)"
+      - "MarketScanner (view market)"
+      - "SignalPanel (view signals)"
+      - "PortfolioManager (manage positions)"
+      - "BacktestEngine (historical testing)"
+```
+
+---
+
+### FASE 3 — Implementación
+
+#### 👨‍💻 @goku — Implementación de Módulos
+**Tarea**: Implementar componentes + servicios basados en tickets
+
+```yaml
+phase: "FASE 3"
+agent: goku
+tickets:
+  - "TKT-INVRFIC-001: Setup Vite base"
+  - "TKT-INVRFIC-002: Broker connector (IBKR/Alpaca)"
+  - "TKT-INVRFIC-003: Technical indicators (RSI, MACD, Bollinger)"
+  - "TKT-INVRFIC-004: Signal generator"
+  - "TKT-INVRFIC-005: Dashboard UI"
+  - "TKT-INVRFIC-006: Market scanner"
+  - "TKT-INVRFIC-007: Options chain viewer"
+  - "TKT-INVRFIC-008: Backtester"
+  - "TKT-INVRFIC-009: Portfolio manager"
+  - "TKT-INVRFIC-010: Alert system"
+
+documentation_standard: "FIC (EN/ES) mandatory"
+```
+
+#### 🗄️ @krillin — Implementación de Persistencia
+**Tarea**: Implementar servicios de BD en REST API
+
+```yaml
+phase: "FASE 3"
+agent: krillin
+parallel_to: goku
+tasks:
+  1_execute_migrations:
+    name: "Ejecutar migrations en DEV Supabase"
+    
+  2_implement_services:
+    name: "Implementar servicios de datos"
+    services:
+      - "StrategyService (CRUD)"
+      - "PriceHistoryService (query historical)"
+      - "SignalService (save/retrieve signals)"
+      - "TradeService (record trades)"
+      - "PortfolioService (positions)"
+    
+  3_expose_api:
+    name: "Crear endpoints REST"
+    endpoints:
+      - "POST /api/strategies"
+      - "GET /api/strategies/:id"
+      - "GET /api/signals (filtered)"
+      - "POST /api/trades"
+      - "GET /api/portfolio"
+```
+
+#### 🥷 @vegeta — Optimización
+**Tarea**: Optimizar performance + auditar seguridad
+
+```yaml
+phase: "FASE 3"
+agent: vegeta
+after_goku: true
+tasks:
+  - "Optimizar latencia en market data feeds"
+  - "Reducir re-renders en React components"
+  - "Auditar que no hay credenciales en código"
+  - "Manejar secretos vía .env"
+  - "Refactor duplicación de código"
+```
+
+#### 🧪 @bulma — Testing
+**Tarea**: Crear tests + validar funcionalidad
+
+```yaml
+phase: "FASE 3"
+agent: bulma
+after_vegeta: true
+tasks:
+  - "Crear tests unitarios para indicadores"
+  - "Crear tests de integración para broker connection"
+  - "Validar signals vs histórico"
+  - "Test portfolio calculations"
+  - "Regression testing de features anteriores"
+```
+
+---
+
+## 🔄 Ciclo de Fases
+
+```
+Fase 0: Setup Global      ✅ COMPLETADA
+Fase 1: Agentes/Skills    ✅ COMPLETADA
+Fase 2.1: SPEC            🟡 PENDIENTE → Usuario proporciona
+Fase 2.2: DB Selection    🟡 PENDIENTE → Preguntar a usuario
+Fase 2.3: Investigación   🟡 PENDIENTE → Picoro invocado
+Fase 2.4: Diseño          🟡 PENDIENTE → Picoro + Krillin + Goku
+Fase 3: Implementación    🟡 PENDIENTE → Todos los agentes
+```
+
+---
+
+## 📊 Estado Actual
+
+| Agente | Fase | Tarea | Estado |
+|--------|------|-------|--------|
+| 🧠 @picoro | 2.3-2.4 | Investigación + Diseño | ⏳ Awaiting SPEC |
+| 🗄️ @krillin | 2.4-3 | Diseño BD + Persistencia | ⏳ Awaiting SPEC |
+| 👨‍💻 @goku | 2.4-3 | Estructura + Implementación | ⏳ Awaiting SPEC |
+| 🥷 @vegeta | 3 | Optimización + Seguridad | ⏳ Awaiting Goku |
+| 🧪 @bulma | 3 | Testing + QA | ⏳ Awaiting Vegeta |
+
+---
+
+**Mantenedor**: Dr. Francisco Ibarra Carlos  
+**Versión**: 2.2  
+**Última actualización**: March 17, 2026

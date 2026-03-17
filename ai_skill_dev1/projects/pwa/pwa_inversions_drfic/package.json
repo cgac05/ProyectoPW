@@ -1,0 +1,40 @@
+{
+  "name": "pwa-inversions-drfic",
+  "version": "0.1.0",
+  "description": "Plataforma PWA de inversiones con análisis técnico e integraciones con brokers",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:e2e": "playwright test",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.4.0",
+    "axios": "^1.6.0",
+    "lightweight-charts": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "vitest": "^1.0.0",
+    "playwright": "^1.40.0"
+  },
+  "keywords": [
+    "trading",
+    "investments",
+    "indicators",
+    "signals",
+    "broker"
+  ],
+  "author": "Dr. Francisco Ibarra Carlos",
+  "license": "MIT"
+}

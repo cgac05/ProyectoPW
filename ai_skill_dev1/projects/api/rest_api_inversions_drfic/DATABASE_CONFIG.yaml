@@ -1,0 +1,73 @@
+# Base de Datos — Configuración Proyecto pwa_inversions_drfic
+
+```yaml
+project_integration:
+  frontend_project_path: "ai_skill_dev1/projects/pwa/pwa_inversions_drfic"
+  rest_api_project_path: "ai_skill_dev1/projects/api/rest_api_inversions_drfic"
+  frontend_data_contracts_path: "ai_skill_dev1/projects/pwa/pwa_inversions_drfic/data"
+  rest_api_source_path: "ai_skill_dev1/projects/api/rest_api_inversions_drfic/src"
+
+database_selection:
+  selected_engines: []  # 🟡 PENDIENTE: Usar DATABASE SELECTION GATE
+
+accounts: {}  # 🟡 PENDIENTE: Completar durante FASE 2.2
+
+model_strategy:
+  per_database: {}  # 🟡 PENDIENTE: Definir por motor
+  clients: {}  # 🟡 PENDIENTE: Especificar ORM/ODM
+  shared_types_output_path: "ai_skill_dev1/projects/api/rest_api_inversions_drfic/src/types/database.types.ts"
+
+model_maturity:
+  per_database: {}  # 🟡 PENDIENTE: Definir estado (draft/candidate/approved)
+
+env_variables: {}  # 🟡 PENDIENTE: Completar por motor
+
+mcp:
+  enabled: true
+  servers: []  # 🟡 PENDIENTE: Configurar servidor MCP por motor
+  config_file: ".vscode/mcp.json"
+
+approvals:
+  database_selection_required: true
+  model_gate_required: true
+  model_review_required: true
+  destructive_migration_approval: true
+  production_approval: true
+```
+
+---
+
+## 📋 Gates Pendientes
+
+### GATE 1: DATABASE SELECTION
+**Pregunta**: ¿Cuál(es) motor(es) de BD usaremos?  
+**Opciones**:
+- Supabase
+- MongoDB
+- PostgreSQL
+- MySQL
+- SQLite
+- Firebase
+
+**Estado**: 🟡 Pendiente respuesta del usuario
+
+---
+
+### GATE 2: DATABASE MODEL
+**Pregunta**: ¿Modelo de datos entregado por usuario o generado por IA?  
+**Estado**: 🟡 Pendiente después de GATE 1
+
+---
+
+## 🎯 Próximos Pasos
+
+1. Usuario responde DATABASE SELECTION GATE
+2. Usuario responde DATABASE MODEL GATE
+3. @krillin diseña schema
+4. @krillin expone servicios REST
+
+---
+
+**Proyecto**: pwa_inversions_drfic  
+**Fecha**: March 17, 2026  
+**Estado**: 🟡 Awaiting gates
