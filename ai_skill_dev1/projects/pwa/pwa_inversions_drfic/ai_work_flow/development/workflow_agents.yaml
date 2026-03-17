@@ -10,93 +10,76 @@
 
 ## 📋 Configuración de Agentes por Fase
 
-### FASE 2.3 — Investigación Profunda
+### FASE 2.3 — Investigación Profunda ✅ COMPLETADO
 
 #### 🧠 @picoro — Investigación + Análisis
 **Tarea principal**: Investigar dominio de trading e inversiones
 
+**STATUS**: ✅ COMPLETADO — Todos los deliverables listos
+
 ```yaml
 phase: "FASE 2.3"
 agent: picoro
-status: "awaiting_specification"
+status: "completed"
 assigned_skills:
   - ticket_analyzer
   - architecture_designer
   - requirement_validator
   - knowledge_synthesizer
 
-tasks:
-  1_analyze_spec:
-    name: "Analizar SPECIFICATION.md"
-    input: "projects/pwa/pwa_inversions_drfic/ai_work_flow/docs/specs/SPECIFICATION.md"
-    output: "Validación de completitud"
+completed_tasks:
+  1_analyze_spec: ✅
+    output: "Validado vs SPECIFICATION.md"
     
-  2_research_brokers:
-    name: "Investigar APIs de Brokers"
+  2_research_brokers: ✅
     output: "knowledge/local/01_broker_api_research.md"
-    topics:
-      - "Interactive Brokers API (@stoqey/ib)"
-      - "Alpaca API (REST + WebSocket)"
-      - "Comparativa y recomendación"
+    content: "IBKR vs Alpaca (recomendación dual-broker)"
     
-  3_research_indicators:
-    name: "Investigar librerías de indicadores"
+  3_research_indicators: ✅
     output: "knowledge/local/02_technical_indicators_research.md"
-    topics:
-      - "TA-Lib vs Talib.js vs otras"
-      - "Implementación de RSI, MACD, Bollinger"
-      - "Performance vs precisión"
+    content: "RSI, MACD, Bollinger, EMA, ATR, Volume con fórmulas"
     
-  4_research_strategies:
-    name: "Investigar estrategias de opciones"
+  4_research_strategies: ✅
     output: "knowledge/local/03_options_strategies_research.md"
-    topics:
-      - "Iron Condor, Straddle, Strangle"
-      - "Risk management"
-      - "Profit/loss calculation"
+    content: "Bull Call, Bear Call, Iron Condor, Covered Call, Institutional Flow"
     
-  5_design_architecture:
-    name: "Diseñar arquitectura del proyecto"
-    output: "knowledge/local/04_architecture_design.md + config.yaml"
-    components:
-      - "PWA components (React)"
-      - "Services (TypeScript)"
-      - "Database schema (Supabase)"
-      - "API endpoints"
+  5_design_architecture: ✅
+    output: "knowledge/local/04_architecture_design.md"
+    content: "6 cores + Maestro orchestrator, data flow, deployment"
     
-  6_create_tickets:
-    name: "Generar tickets TKT-INVRFIC-###"
-    output: "tickets/ con tareas para Goku, Krillin, etc."
+  6_create_tickets: ✅
+    output: "tickets/INDEX.md, TKT-SUMMARY.md, 20 tickets generados"
+    count: "TKT-INVRFIC-001 a TKT-INVRFIC-020"
 ```
 
 ---
 
-### FASE 2.4 — Diseño + Estructura
+### FASE 2.4 — Diseño Detallado + Estructura
 
 #### 🗄️ @krillin — Diseño Base de Datos
-**Tarea**: Diseñar schema Supabase desde contratos PWA
+**Tarea**: Ejecutar TKT-INVRFIC-001 (Schema Supabase) + TKT-INVRFIC-002 (MongoDB)
 
 ```yaml
 phase: "FASE 2.4"
 agent: krillin
-status: "awaiting_specification"
+status: "ready_for_sprint_1"
+assigned_tickets:
+  - "TKT-INVRFIC-001: PostgreSQL Schema (Supabase)"
+  - "TKT-INVRFIC-002: MongoDB Collections"
+  - "TKT-INVRFIC-004: IBroker Interface"
+  - "TKT-INVRFIC-007: Message Queue (Bull)"
+
 assigned_skills:
   - database_schema_designer
   - database_migrator
   - database_connector
 
-tasks:
-  1_design_schema:
-    name: "Traducir modelos PWA → SQL Supabase"
-    input: "data/supabase/models/"
-    output: "data/supabase/schema/ (SQL definitions)"
-    tables:
-      - "strategies (trading strategies config)"
-      - "price_history (OHLCV candles)"
-      - "indicators (calculated indicators)"
-      - "signals (buy/sell signals)"
-      - "trades (executed trades)"
-      - "portfolio (user positions)"
+sprint_1_deliverables:
+  - "Schema PostgreSQL con 6 tables (users, accounts, trades, signals, portfolio, settings)"
+  - "Supabase RLS policies"
+  - "MongoDB collections con TTL indices"
+  - "IBroker interface TypeScript definition"
+  - "Bull queue infrastructure (Redis)"
     
   2_create_migrations:
     name: "Crear migraciones versionadas"

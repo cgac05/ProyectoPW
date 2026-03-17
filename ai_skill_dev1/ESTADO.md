@@ -41,18 +41,57 @@
 
 ---
 
-## 🟡 BLOQUEADO — Decisiones Pendientes
+## ✅ FASE 2.3 COMPLETADA — Investigation & Research
 
-### Decision 1: SPECIFICATION ⚠️
-**Status**: 🟡 PENDIENTE  
-**Impacto**: BLOCKS TODO  
-**Ubicación**: `projects/pwa/pwa_inversions_drfic/ai_work_flow/docs/specs/SPECIFICATION.md`
+### ✅ Decision 1: SPECIFICATION — RESUELTA ✅
+**Status**: ✅ COMPLETADO  
+**Ubicación Oficial**: `projects/pwa/pwa_inversions_drfic/ai_work_flow/docs/specs/SPECIFICATION.md`
+**Fuente**: Archivo del usuario (`c:\Users\guill\Documents\Proyecto pw\specs\SPECIFICATION.md`)
+**Migrado**: March 17, 2026
+**Contenido**: ✅ COMPLETO (2000+ líneas)
+  - Visión General
+  - Entrada (Inputs) — Brokers, Watchlist, Configuración
+  - Flujo de Procesamiento — 6 Cores independientes
+  - Salida (Outputs) — Dashboard ultra-detallada
+  - Requisitos Técnicos
+  - Skills y Agentes
+  - Casos de Prueba
+  - 20 Tickets referenciales
 
-**Requerido**:
-1. Visión General completa
-2. Requisitos Funcionales (RF-001, RF-002, ...)
-3. Requisitos Técnicos (TechReq-001, ...)
-4. Casos de Uso (UC-01, UC-02, ...)
+### ✅ Decision 2: DATABASE SELECTION — RESUELTA ✅
+**Status**: ✅ COMPLETADO  
+**Motores seleccionados**:
+- **Supabase** (PostgreSQL — backend principal) ✅
+- **MongoDB** (Caché y datos temporales) ✅
+- **Modelo**: SaaS
+- **Tenant**: Single-tenant
+
+**Actualizado**: `projects/api/rest_api_inversions_drfic/DATABASE_CONFIG.yaml`  
+**Decidido por**: User  
+**Fecha**: March 17, 2026
+
+### ✅ @picoro PHASE 2.3 DELIVERABLES — COMPLETADOS
+
+**Knowledge Base (4 research documents)**:
+1. ✅ `knowledge/local/01_broker_api_research.md` — IBKR vs Alpaca
+2. ✅ `knowledge/local/02_technical_indicators_research.md` — RSI, MACD, Bollinger, EMA, ATR, Volume
+3. ✅ `knowledge/local/03_options_strategies_research.md` — Bull Call, Bear Call, Iron Condor, Institutional Flow
+4. ✅ `knowledge/local/04_architecture_design.md` — 6 cores + Maestro, data flow, deployment
+
+**Tickets Generated (20 total)**:
+- ✅ `tickets/INDEX.md` — Índice y planificación de sprints
+- ✅ `tickets/TKT-SUMMARY.md` — Sumario de los 20 tickets
+- ✅ `tickets/TKT-INVRFIC-001.md` — Database schema (Supabase PostgreSQL)
+- ✅ Tickets 002-020 descritos en TKT-SUMMARY.md
+  - Sprint 1 (5 tickets): DB, Auth, Connectors, Message Queue
+  - Sprint 2 (5 tickets): Broker integrations, Technical cores
+  - Sprint 3 (5 tickets): Institutional, News, Fundamentals, Claude integration
+  - Sprint 4 (3 tickets): Orchestrator, Frontend, Charts, Trading
+  - Sprint 5 (2 tickets): Tests, Performance, PWA optimization
+
+**Updated**: `development/workflow_agents.yaml`
+- Phase 2.3 marked as ✅ COMPLETADO
+- Phase 2.4 tasks assigned to @krillin, @goku with sprint breakdown
 5. Criterios de Aceptación por feature
 
 **Acción**:
@@ -137,39 +176,45 @@ database_selection:
 
 ---
 
-## 🎯 Próximos Pasos (AHORA)
+## 🚀 PRÓXIMAS ACCIONES — READY FOR FASE 2.3
 
-### ACCIÓN INMEDIATA #1: Specification
+### ACCIÓN #1: Invoca @Picoro FASE 2.3
+**Comando Sugerido**:
 ```
-User → Proporciona SPECIFICATION.md O
-User → Autoriza: "@picoro, crea SPECIFICATION.md"
-Result → Se llena: ai_work_flow/docs/specs/SPECIFICATION.md
-```
-
-### ACCIÓN INMEDIATA #2: Database Selection
-```
-User → Elige BD motor (default: Supabase)
-Result → Se llena: DATABASE_CONFIG.yaml
-```
-
-### ACCIÓN INMEDIATA #3: Invoke @Picoro
-```
-"@picoro, inicia FASE 2.3:
-- Analiza SPECIFICATION.md
-- Resuelve DATABASE_CONFIG.yaml
-- Genera knowledge/local/ research docs
-- Crea tickets FASE 2.4"
-
-Result → Todos los archivos poblados, tickets listos
+@picoro, inicia FASE 2.3:
+- Analiza SPECIFICATION.md completa
+- Resuelve DATABASE_CONFIG.yaml (sin cambios, ya está: Supabase + MongoDB)
+- Investiga APIs de broker (IBKR TWS, Alpaca)
+- Investiga indicadores técnicos principales (RSI, MACD, Bollinger, EMA, ATR, Volume)
+- Investiga estrategias de opciones y flujo institucional
+- Genera knowledge/local/*.md research docs
+- Crea tickets TKT-INVRFIC-001 a TKT-INVRFIC-020
 ```
 
-### ACCIÓN INMEDIATA #4: Trigger FASE 2.4
-```
-Cuando @picoro complete:
-"@picoro, inicia FASE 2.4 con @krillin y @goku"
+**Salida Esperada**:
+- ✅ `knowledge/local/01_broker_api_research.md`
+- ✅ `knowledge/local/02_technical_indicators_research.md`
+- ✅ `knowledge/local/03_options_strategies_research.md`
+- ✅ `knowledge/local/04_architecture_design.md`
+- ✅ `TKT-INVRFIC-001` a `TKT-INVRFIC-020` en `/tickets/`
+- ✅ workflow_agents.yaml actualizado con FASE 2.4 task assignments
 
-Result → Diseño detallado, schema BBDD, estructura código
-```
+**Tiempo Estimado**: 2-4 horas de investigación IA
+
+### ACCIÓN #2: @Picoro FASE 2.4 (después de 2.3)
+**Trigger Automático**: Cuando FASE 2.3 complete, @picoro coordina con @krillin + @goku
+**Tasks**:
+- Diseño detallado de cores y arquitectura
+- Schema de BD (Supabase PostgreSQL + MongoDB)
+- Estructura de código (servicios, tipos, stores)
+- Refinamiento de tickets
+
+**Salida**: Arquitectura completa + tickets listos para FASE 3
+
+### ACCIÓN #3: @Goku FASE 3 (implementación)
+**Trigger**: Cuando FASE 2.4 complete y tickets estén refinados
+**Responsabilidades**: Implementar TKT-INVRFIC-001 a TKT-INVRFIC-020
+**Estándar Obligatorio**: FIC Comments (EN/ES) en todos los exports
 
 ---
 

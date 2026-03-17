@@ -1,63 +1,47 @@
-# 📋 Especificación — Plataforma de Inversiones con IA (PLACEHOLDER)
+# ESPECIFICACIÓN TÉCNICA — v1.0
 
-**Estado**: 🟡 PENDIENTE  
-**Archivo completo**: `ai_work_flow/docs/specs/SPECIFICATION.md`
+## Proyecto: Plataforma de Inversiones con IA
 
----
-
-## ⚠️ IMPORTANTE
-
-Este archivo es un PLACEHOLDER. La especificación completa debe ser:
-1. **Proporcionada por el usuario**, o
-2. **Generada por @picoro** durante FASE 2.3
-
----
-
-## 📝 Estructura Esperada
-
-Cuando se complete, incluirá:
-
-1. **Visión General**
-   - Contexto y objetivo
-   - Flujo principal
-   - Resultado esperado
-
-2. **Requisitos Funcionales**
-   - Conexión a brokers
-   - Cálculo de indicadores
-   - Generación de señales
-   - Gestión de portafolio
-   - Other features
-
-3. **Requisitos Técnicos**
-   - Frontend: React 18+, TypeScript, Vite
-   - Backend: Node.js, TypeScript
-   - BD: Supabase (o a definir)
-   - Brokers: IBKR, Alpaca (o a definir)
-
-4. **Casos de Uso**
-   - Usuario conecta a broker
-   - Sistema analiza mercado
-   - Genera señales en tiempo real
-   - Usuario ejecuta operaciones
-
-5. **Criterios de Aceptación**
-   - Connected a broker
-   - Indicadores calculados correctamente
-   - Señales precisas
-   - UI responsive
+**Código del Proyecto**: `pwa_inversions_drfic`
+**Categoría**: PWA (Progressive Web App)
+**Tech Stack Principal**: React + TypeScript + Vite + TailwindCSS
+**Versión**: 1.2
+**Fecha**: 2026-03-11
+**Autor**: Dr. Francisco Ibarra Carlos
+**Estado**: ✅ SPECIFICATION OFICIAL
+**Cambios v1.2**: Arquitectura por cores independientes, ranking diario de oportunidades, análisis fundamental/eventos, confluencia configurable y motor de estrategias sobre opciones
 
 ---
 
-## 🚀 Próximos Pasos
+## 1. Visión General
 
-1. **Usuario proporciona SPEC** o autoriza a @picoro para generarla
-2. **@picoro analiza** completitud y claridad
-3. **@picoro investiga** tecnologías necesarias
-4. **@picoro genera tickets** para implementación
+### 1.1 Objetivo
+
+Desarrollar una **Plataforma Web de Inversiones asistida por Inteligencia Artificial** que permita detectar señales de compra y venta de alta confianza en el mercado de acciones y opciones de EE.UU. (S&P 500 / SPY / QQQ y sus derivados), combinando análisis técnico multicapa (RSI, MACD, Bollinger Bands, EMA/SMA, Volume), análisis de la cadena de opciones, monitoreo de flujo institucional, y confirmación mediante IA (Claude API), todo integrado con Interactive Brokers (IBKR) como broker primario y Alpaca como entorno de desarrollo y paper trading.
+
+### 1.2 Filosofía de la Plataforma
+
+La plataforma opera bajo el modelo **semi-automático**: el cerebro de decisión vive dentro del proyecto como un conjunto de **cores programados y desacoplados**, cada uno especializado en una fuente de verdad distinta. La IA no reemplaza la lógica base; actúa como un core adicional de análisis y sugerencia.
+
+Cada core debe generar señales de compra y venta de forma independiente para el instrumento seleccionado, con su propio score, confianza, razones y contexto. El usuario decide qué cores participan en la decisión final y el sistema solo combina las coincidencias entre los cores activados.
+
+No existe ejecución automática sin intervención humana en v1.0. La plataforma debe:
+
+- descubrir oportunidades diarias de mayor prioridad
+- analizar en profundidad el instrumento seleccionado
+- combinar coincidencias entre indicadores, estructura técnica, institucionales, noticias, fundamentales e IA
+- sugerir la mejor estrategia de opciones para el contexto actual
+- permitir la ejecución manual asistida en el broker elegido
 
 ---
 
-**Proyecto**: pwa_inversions_drfic  
-**Fecha creación placeholder**: March 17, 2026  
-**Estado**: 🟡 Awaiting user input or Picoro generation
+## 📌 FUENTES DE VERDAD
+
+**SPECIFICATION OFICIAL**: `ai_skill_dev1/projects/pwa/pwa_inversions_drfic/ai_work_flow/docs/specs/SPECIFICATION.md`  
+**ÚLTIMA ACTUALIZACIÓN**: March 17, 2026  
+**MOTORES BD SELECCIONADOS**: Supabase (principal) + MongoDB (caché)  
+**ESTADO**: ✅ Completa y lista para FASE 2.3 (@picoro investigación)
+
+---
+
+### Para la especificación completa, consultar archivo fuente en repositorio.

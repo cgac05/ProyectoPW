@@ -8,9 +8,13 @@ project_integration:
   rest_api_source_path: "ai_skill_dev1/projects/api/rest_api_inversions_drfic/src"
 
 database_selection:
-  selected_engines: []  # 🟡 PENDIENTE: Usar DATABASE SELECTION GATE
+  selected_engines: 
+    - supabase    # ✅ Backend principal con PostgreSQL
+    - mongodb     # ✅ Caché y datos temporales
+  deployment_model: "SaaS"  # SaaS | Self-hosted
+  decided_on: "March 17, 2026"
 
-accounts: {}  # 🟡 PENDIENTE: Completar durante FASE 2.2
+accounts: {}  # ⏳ PRÓXIMO: @picoro define instancias
 
 model_strategy:
   per_database: {}  # 🟡 PENDIENTE: Definir por motor
