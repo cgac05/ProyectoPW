@@ -1,0 +1,166 @@
+# Database Configuration Template
+# Archivo: DATABASE_CONFIG.yaml
+# Proposito: Especificar una o mas bases de datos, su estrategia de modelado,
+#            y la relacion entre contratos de datos en la PWA y persistencia real en REST API
+
+# ============================================
+# INTEGRACION DE PROYECTOS
+# ============================================
+project_integration:
+  frontend_project_path: "ai_skill_dev1/projects/pwa/pwa_inversions_drfic"
+  rest_api_project_path: "ai_skill_dev1/projects/api/rest_api_inversions_drfic"
+  frontend_data_contracts_path: "ai_skill_dev1/projects/pwa/pwa_inversions_drfic/data"
+  rest_api_source_path: "ai_skill_dev1/projects/api/rest_api_inversions_drfic/src"
+
+
+# ============================================
+# SELECCION DE BASES DE DATOS
+# ============================================
+database_selection:
+  # Lista de motores elegidos. La metodologia permite 1 o mas motores.
+  # Motores recomendados: supabase, mongodb, postgresql, mysql, sqlite, firebase
+  selected_engines:
+    - alias: "<engine_alias_1>"
+      engine: "<engine_name_1>"
+      engine_label: "<engine_label_1>"
+      enabled: true
+      role: "<role_1>"
+    # Repetir bloque por cada motor adicional seleccionado
+
+
+# ============================================
+# CUENTAS Y ENTORNOS POR MOTOR
+# ============================================
+accounts:
+  <engine_alias_1>:
+    provider: "<provider_1>"
+    owner_email: "<email-del-owner>"
+    project_name: "<project_name_1>"
+    project_ref: "<project_ref_or_cluster_1>"
+    region: "<region_1>"
+    environment: "development"
+  # Repetir bloque por cada motor adicional seleccionado
+
+
+# ============================================
+# ESTRATEGIA DE MODELOS DE DATOS
+# ============================================
+model_strategy:
+  # Gate obligatorio: por cada motor, indicar si el modelo lo entrega el usuario
+  # o si debe ser propuesto por la IA.
+  per_database:
+    <engine_alias_1>:
+      source_mode: "provided_by_user"  # provided_by_user | generate_by_ai
+      specification_file: "ai_skill_dev1/projects/pwa/pwa_inversions_drfic/ai_work_flow/docs/specs/SPECIFICATION.md"
+      contract_paths:
+        models_path: "ai_skill_dev1/projects/pwa/pwa_inversions_drfic/data/<engine_alias_1>/models"
+        schema_path: "ai_skill_dev1/projects/pwa/pwa_inversions_drfic/data/<engine_alias_1>/schema"
+        seed_data_path: "ai_skill_dev1/projects/pwa/pwa_inversions_drfic/data/<engine_alias_1>/data"
+      rest_api_paths:
+        models_path: "ai_skill_dev1/projects/api/rest_api_inversions_drfic/src/models/<engine_alias_1>"
+        migrations_path: "ai_skill_dev1/projects/api/rest_api_inversions_drfic/src/migrations/<engine_alias_1>"
+        services_path: "ai_skill_dev1/projects/api/rest_api_inversions_drfic/src/services/<engine_alias_1>"
+    # Repetir bloque por cada motor adicional seleccionado
+
+  # Cliente/ORM por motor
+  clients:
+    supabase: "supabase-js"
+    mongodb: "mongoose"
+    postgresql: "prisma"
+    mysql: "prisma"
+    sqlite: "drizzle"
+    firebase: "firebase-admin"
+
+  # Tipos compartidos que luego puede consumir la PWA
+  shared_types_output_path: "ai_skill_dev1/projects/api/rest_api_inversions_drfic/src/types/database.types.ts"
+
+
+# ============================================
+# MADUREZ DEL MODELO (OBLIGATORIO POR MOTOR)
+# ============================================
+model_maturity:
+  # Estados validos: draft | candidate | approved
+  per_database:
+    <engine_alias_1>:
+      state: "draft"
+      requires:
+        - "knowledge_local_remote_ready"
+        - "spec_traceability_ready"
+        - "human_review_required"
+      migration_allowed: false
+    # Repetir bloque por cada motor adicional seleccionado
+
+  global_rules:
+    - "No migrations with state draft"
+    - "Candidate requires traceability and gaps documented"
+    - "Approved requires explicit human sign-off"
+
+
+# ============================================
+# VARIABLES DE ENTORNO REQUERIDAS
+# (Solo nombres, los valores van en .env del REST API, nunca aqui)
+# ============================================
+env_variables:
+  supabase:
+    - SUPABASE_URL
+    - SUPABASE_ANON_KEY
+    - SUPABASE_SERVICE_ROLE_KEY
+    - SUPABASE_DB_PASSWORD
+
+  mongodb:
+    - MONGODB_URI
+    - MONGODB_DB_NAME
+    - MONGODB_USER
+    - MONGODB_PASSWORD
+
+  postgresql:
+    - DATABASE_URL
+    - DB_HOST
+    - DB_PORT
+    - DB_NAME
+    - DB_USER
+    - DB_PASSWORD
+
+  mysql:
+    - MYSQL_URL
+    - MYSQL_HOST
+    - MYSQL_PORT
+    - MYSQL_DATABASE
+    - MYSQL_USER
+    - MYSQL_PASSWORD
+
+  sqlite:
+    - SQLITE_FILE_PATH
+
+  firebase:
+    - FIREBASE_PROJECT_ID
+    - FIREBASE_CLIENT_EMAIL
+    - FIREBASE_PRIVATE_KEY
+
+
+# ============================================
+# CONFIGURACION MCP (Model Context Protocol)
+# ============================================
+mcp:
+  # Si se usa MCP para conectar el agente IA directamente a la BD real
+  enabled: true
+
+  # Puede existir mas de un servidor MCP, uno por motor activo
+  servers:
+    - alias: "<engine_alias_1>"
+      mcp_server: "<mcp_server_1>"
+      enabled: true
+    # Repetir bloque por cada motor adicional seleccionado
+
+  config_file: ".vscode/mcp.json"
+
+
+# ============================================
+# APROBACIONES REQUERIDAS
+# ============================================
+approvals:
+  database_selection_required: true
+  model_gate_required: true
+  model_review_required: true
+  destructive_migration_approval: true
+  production_approval: true

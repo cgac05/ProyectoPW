@@ -1,0 +1,371 @@
+# Project Configuration Template
+# Archivo: config.yaml
+
+# ============================================
+# INFORMACIÓN DEL PROYECTO
+# ============================================
+project:
+  # Código único del proyecto (usado en tickets, logs, etc.)
+  code: "<project_code>"
+  
+  # Nombre descriptivo del proyecto
+  name: "<Project Name>"
+  
+  # Versión del proyecto (SemVer: major.minor.patch)
+  version: "1.0.0"
+  
+  # Categoría del proyecto
+  category: "rpa"  # rpa | automation | integration | reporting | other
+  
+  # Descripción breve
+  description: "Descripción corta del propósito del proyecto"
+  
+  # Estado del proyecto
+  status: "development"  # development | testing | production
+  
+  # Metadata adicional
+  metadata:
+    owner: "<Nombre del owner>"
+    team: "<Nombre del equipo>"
+    created: "YYYY-MM-DD"
+    last_updated: "YYYY-MM-DD"
+    repository: "<URL del repo si aplica>"
+
+  # Convención de layout de código del proyecto
+  #code_layout:
+  #  mode: "src-first"         # src-first (recomendado)
+  #  component_docs: "optional" # optional | required
+  #  component_configs: "optional" # optional | required
+
+
+# ============================================
+# DEPENDENCIAS
+# ============================================
+dependencies:
+  # Skills globales requeridos
+  global_skills:
+    - name: "sap_connection"
+      version: ">=2.0.0"
+      required: true
+    - name: "excel_operations"
+      version: ">=1.5.0"
+      required: true
+    - name: "email_notifications"
+      version: ">=1.0.0"
+      required: false
+  
+  # Agentes globales requeridos
+  global_agents:
+    - name: "data_validator_agent"
+      version: ">=1.0.0"
+      required: false
+  
+  # Paquetes Python
+  python_packages:
+    - "pandas>=1.5.0"
+    - "openpyxl>=3.0.0"
+    - "python-dotenv>=0.19.0"
+  
+  # Requisitos del sistema
+  system_requirements:
+    - "Python>=3.8"
+    - "Windows 10+ o Linux"
+    - "SAP GUI (si aplica)"
+
+
+# ============================================
+# CONFIGURACIÓN DE ENTORNOS
+# ============================================
+environments:
+  # Desarrollo
+  development:
+    enabled: true
+    log_level: "DEBUG"
+    debug_mode: true
+    data_path: "./data/dev/"
+    output_path: "./output/dev/"
+    
+  # Testing
+  testing:
+    enabled: true
+    log_level: "INFO"
+    debug_mode: false
+    data_path: "./data/test/"
+    output_path: "./output/test/"
+    
+  # Producción
+  production:
+    enabled: true
+    log_level: "WARNING"
+    debug_mode: false
+    data_path: "./data/prod/"
+    output_path: "./output/prod/"
+
+
+# ============================================
+# CONFIGURACIÓN DE EJECUCIÓN
+# ============================================
+execution:
+  # Timeout general (segundos)
+  timeout: 300
+  
+  # Número máximo de reintentos
+  max_retries: 3
+  
+  # Tiempo entre reintentos (segundos)
+  retry_delay: 5
+  
+  # Ejecución en paralelo
+  parallel_execution:
+    enabled: false
+    max_workers: 4
+  
+  # Notificaciones
+  notifications:
+    on_success: true
+    on_error: true
+    on_warning: false
+    email_recipients:
+      - "usuario@empresa.com"
+
+
+# ============================================
+# LOGGING
+# ============================================
+logging:
+  # Nivel de log por defecto
+  level: "INFO"  # DEBUG | INFO | WARNING | ERROR | CRITICAL
+  
+  # Formato del log
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # Ubicación de archivos de log
+  file_path: "./logs/"
+  
+  # Nombre del archivo de log
+  file_name: "<project_code>_{date}.log"
+  
+  # Rotación de logs
+  rotation:
+    enabled: true
+    max_bytes: 10485760  # 10MB
+    backup_count: 5
+  
+  # Log separado para errores
+  error_log:
+    enabled: true
+    file_name: "<project_code>_errors_{date}.log"
+
+
+# ============================================
+# PATHS Y DIRECTORIOS
+# ============================================
+paths:
+  # Directorio raíz del proyecto
+  root: "./"
+  
+  # Código fuente
+  source: "./src/"
+
+  # Convención recomendada para nuevos proyectos
+  source_modules: "./src/modules/"
+  source_services: "./src/services/"
+  
+  # Datos de entrada
+  input: "./data/input/"
+  
+  # Datos de salida
+  output: "./data/output/"
+  
+  # Archivos temporales
+  temp: "./temp/"
+  
+  # Configuraciones
+  config: "./config/"
+  
+  # Templates
+  templates: "./templates/"
+
+
+# ============================================
+# CONFIGURACIÓN ESPECÍFICA DEL PROYECTO
+# ============================================
+# Aquí van configuraciones específicas de tu proyecto
+custom:
+  # Ejemplo: Configuración SAP
+  sap:
+    system_id: "PRD"
+    client: "100"
+    language: "EN"
+    connection_timeout: 60
+  
+  # Ejemplo: Configuración Excel
+  excel:
+    default_sheet: "Sheet1"
+    skip_rows: 0
+    header_row: 0
+  
+  # Ejemplo: Validaciones
+  validation:
+    strict_mode: true
+    required_fields:
+      - "campo1"
+      - "campo2"
+      - "campo3"
+
+
+# ============================================
+# TESTING
+# ============================================
+testing:
+  # Framework de testing
+  framework: "pytest"
+  
+  # Cobertura mínima requerida
+  min_coverage: 80
+  
+  # Directorio de tests
+  test_directory: "./tests/"
+  
+  # Archivos de fixtures
+  fixtures_directory: "./tests/fixtures/"
+  
+  # Tests a ejecutar
+  test_patterns:
+    - "test_*.py"
+    - "*_test.py"
+
+
+# ============================================
+# DOCUMENTACIÓN
+# ============================================
+documentation:
+  # Directorio de documentación
+  docs_directory: "./docs/"
+  
+  # Archivos obligatorios
+  required_files:
+    - "README.md"
+    - "architecture.md"
+  
+  # Generar docs automáticamente
+  auto_generate:
+    enabled: false
+    format: "markdown"  # markdown | html | pdf
+
+
+# ============================================
+# CONTROL DE VERSIONES Y TICKETS
+# ============================================
+versioning:
+  # Sistema de versionado
+  system: "semver"  # semantic versioning
+  
+  # Prefijo para tickets
+  ticket_prefix: "TKT-<PROJECT_CODE>-"
+  
+  # Próximo número de ticket
+  next_ticket_number: 1
+  
+  # Directorio de tickets
+  tickets_directory: "./tickets/"
+
+
+# ============================================
+# PERFORMANCE Y OPTIMIZACIÓN
+# ============================================
+performance:
+  # Cache
+  cache:
+    enabled: true
+    ttl: 3600  # segundos
+    max_size: 100  # MB
+  
+  # Procesamiento por lotes
+  batch_processing:
+    enabled: false
+    batch_size: 100
+  
+  # Monitoreo
+  monitoring:
+    enabled: true
+    metrics:
+      - "execution_time"
+      - "memory_usage"
+      - "error_rate"
+
+
+# ============================================
+# SEGURIDAD
+# ============================================
+security:
+  # Archivo de secrets
+  secrets_file: ".env"
+  
+  # Encriptación
+  encryption:
+    enabled: false
+    algorithm: "AES-256"
+  
+  # Variables sensibles (NO poner valores aquí)
+  sensitive_vars:
+    - "SAP_PASSWORD"
+    - "API_KEY"
+    - "DB_PASSWORD"
+
+
+# ============================================
+# INTEGRACIONES
+# ============================================
+integrations:
+  # SAP
+  sap:
+    enabled: true
+    type: "RFC"  # RFC | ODATA | API
+  
+  # Base de datos
+  database:
+    enabled: false
+    type: "postgresql"  # postgresql | mysql | mssql | oracle
+  
+  # Email
+  email:
+    enabled: true
+    smtp_server: "smtp.empresa.com"
+    smtp_port: 587
+  
+  # APIs externas
+  external_apis:
+    - name: "api_name"
+      url: "https://api.example.com"
+      version: "v1"
+
+
+# ============================================
+# MANTENIMIENTO
+# ============================================
+maintenance:
+  # Limpieza automática de archivos temporales
+  auto_cleanup:
+    enabled: true
+    retention_days: 7
+  
+  # Archivado de logs antiguos
+  log_archiving:
+    enabled: true
+    archive_after_days: 30
+  
+  # Backup de configuración
+  config_backup:
+    enabled: true
+    backup_frequency: "weekly"
+
+
+# ============================================
+# NOTAS
+# ============================================
+notes: |
+  Notas adicionales sobre el proyecto:
+  - Nota 1
+  - Nota 2
+  - Consideraciones especiales
